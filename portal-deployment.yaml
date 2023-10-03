@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portal-deployment
+spec:
+  template:
+    metadata:
+      name: portal
+      labels:
+        app: portal
+    spec:
+      containers:
+        - name: portal-container
+          image: wesleydemorais/portal-image:1.0
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: portal-configmap
+  replicas: 1
+  selector:
+    matchLabels:
+      app: portal

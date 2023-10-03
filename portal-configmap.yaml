@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: portal-configmap
+data:
+  DB_NAME: portal-db
+  USER: postgres
+  PASSWORD: postgres
+  HOST: localhost
+  PORT: "5432"

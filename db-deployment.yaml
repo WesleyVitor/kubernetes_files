@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+spec:
+  template:
+    metadata:
+      name: db_portal
+      labels:
+        app: db_portal
+    spec:
+      containers:
+        - name: db-django-container
+          image: postgres:12.1-alpine
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: db-configmap
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db_portal
